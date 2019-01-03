@@ -1,0 +1,47 @@
+.compstyle
+{
+    border: 1px transparent solid;    
+    width: 800px;
+    background-color: white;
+    margin: 3px 145px;
+    /* height: 300px; */
+    box-shadow: 0px -5px 12px 15px white;
+}
+
+.compstylechild{
+    /* border: 1px red solid; */
+    height: 30px;
+    background: linear-gradient(135deg, #6f42c1 0%, whitesmoke 100%);
+    text-align: center;
+    color: white;
+    border-radius: 5px;  
+    font-variant-caps: all-petite-caps;
+}
+
+.field_set{
+    border: #AD9AE9;
+    border-style: solid;
+    padding: 5px !important;
+    margin: 5px;
+    font-variant-caps: all-petite-caps;
+  }
+
+  .alignsort
+  {
+      display:flex;
+      flex-flow: wrap;
+  }
+
+  .taskbuttons{
+    height: 37px;
+    margin-top: 5px;
+  }
+
+  /* table thead > tr > th{
+    border:1px #6f42c1 solid;
+  } */
+
+  .bgggg{
+      background-color: lightgreen !important;
+      border-radius: 10px;      
+  }

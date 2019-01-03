@@ -1,0 +1,29 @@
+<div class="modal fade" style="font-family: initial;color: white" [attr.id]="modalId" tabindex="-1" role="dialog" aria-labelledby="modalIdLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content   modalcontainer">
+          <div class="modal-header">
+              <div> 
+                <div style="display: flex">
+                  <i class="material-icons" style="font-size:36px; color: yellow">warning</i>
+                  </div>
+                  <ng-content select="[head]"></ng-content>
+                </div>
+              <button type="button" 
+                      class="close" 
+                      data-dismiss="modal" 
+                      aria-label="Close"><span class="crossbuttons" aria-hidden="true">&times;</span>
+              </button>                            
+          </div>
+          
+          <div class="modal-body"  style="text-align: center">
+              <ng-content select="[body]"></ng-content>
+          </div>
+          <div class="modal-footer">
+          <button class='btn btn-success btn-sm successbutton' data-dismiss="modal" (click)="valueChanged()">Yes</button>
+          <button class='btn btn-primary btn-sm resetbutton' data-dismiss="modal" (click)="noclick()">No</button>
+              <ng-content select="[footer]"></ng-content>
+          </div>
+      </div>
+  </div>
+</div> 
+

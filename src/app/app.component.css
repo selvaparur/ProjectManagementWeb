@@ -1,0 +1,51 @@
+.headercontainer{
+    /* border:1px red solid; */
+    height: 50px;
+    text-align: center;
+    padding: 10px 10px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.25em;        
+    background: linear-gradient(135deg, #6f42c1 0%, whitesmoke 100%);
+    box-shadow: 1px -5px 12px 5px white;
+}
+
+.routerbackground{
+    background: linear-gradient(135deg, #6f42c1 0%, whitesmoke 100%);    
+}
+
+.helptext{
+    width: 600px;
+    border: 3px whitesmoke solid;  
+    color: white;
+    margin: 20px;  
+    border-radius: 10px;
+    /* text-align: center; */
+    padding:5px 5px;    
+}
+
+.displayhelptext{
+    display: inline-flex;    
+}
+
+.hrstyle
+{
+    background-color: white;
+}
+
+ul > li{
+background-color: transparent;
+/* border: 1px red solid; */
+border-radius: 3px;
+padding: 2px;
+color: white;
+font-variant-caps: all-petite-caps;
+}
+
+p:active
+{
+    border: 1px transparent solid;
+    border-radius: 9px;
+    color: white;
+    background-color: #AD9AE9;
+}

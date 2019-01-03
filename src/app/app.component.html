@@ -1,0 +1,33 @@
+<div class="container headercontainer bg-dark navbar-dark">
+  <span style="font-family: fantasy"><h4>Project Management</h4></span>
+</div>
+<div style="height: 2px;"></div>
+<div class="container routerbackground">
+
+  <div id="navs" class="displayhelptext">
+    <div>
+      <ul class="nav flex-column">
+          <li class="nav-item" (click)="helptext('project')">
+            <a class="nav-link" style="color: white;"   id="addproject" [routerLink]="'add-edit-projects'">Add Project</a>
+          </li>
+          <li class="nav-item" (click)="helptext('addtask')">
+            <a class="nav-link"  style="color: white" id="addtask" [routerLink]="'add-edit-task/:id'">Add Task</a>
+          </li>
+          <li class="nav-item" (click)="helptext('user')">
+            <a class="nav-link"  style="color: white" id="adduser" [routerLink]="'add-users'">Add User</a>
+          </li>
+          <li class="nav-item" (click)="helptext('viewtask')">
+            <a class="nav-link"   style="color: white" id="viewtask" [routerLink]="'view-task'">View Task</a>
+          </li>          
+        </ul>
+      </div>
+      <div style="width: 115px;"></div>
+      <div class="helptext" id="divhelptext"></div>
+      
+  </div>
+  <hr class="hrstyle">
+
+<router-outlet></router-outlet>
+</div>
+
+

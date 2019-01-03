@@ -1,0 +1,163 @@
+<div class="compstyle">
+  <div class="compstylechild"><b>Add Task</b></div>
+  <div>
+    <fieldset class="field_set">
+      <legend style="font-variant-caps: all-petite-caps;text-align: center">Add Task Details</legend>
+      
+<form [formGroup]="taskform">
+ 
+  <div class="form-group row">
+      <label for="proid" class="col-sm-2 col-form-label">Project:</label>          
+        <div class="col-sm-7">
+          <input type="input" class="form-control" formControlName="projectname" 
+          name="projectname" id="projectname" style="width: 450px !important" disabled>
+          <div *ngIf="submitted && f.projectname.errors" class="mandmaindiv">
+              <div *ngIf="f.projectname.errors.required" class="arrow_box">Project Name is required</div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+          <input type="button" class="serachbuton" data-toggle="modal" data-target="#projectpop">
+        </div>
+        <div class="col-sm-2"></div>
+        <input type="hidden" name="projectId" id="projectid" formControlName="projectid">
+      </div>
+
+      <div class="form-group row">
+          <label for="protask" class="col-sm-2 col-form-label">Task:</label>          
+            <div class="col-sm-10">
+              <input type="input" class="form-control" id="taskname" formControlName="taskname" 
+              style="width: 515px !important"
+              [ngClass]="{ 'is-invalid': submitted && f.taskname.errors }">
+
+              <div *ngIf="submitted && f.taskname.errors" class="mandmaindiv">
+                  <div *ngIf="f.taskname.errors.required" class="arrow_box">Task Name is required</div>
+                </div>
+                <input type="hidden" name="taskid" id="taskid" formControlName="taskid">
+            </div>              
+  
+          </div>
+
+          <div class="form-group row">
+
+              <div class="col-sm-2"></div> 
+              <div class="col-sm-10">
+                  <input type="checkbox" (change)="onparenttaskselected($event)"  formControlName="isparenttask" id="isparenttask" style="border-color: #6f42c1;">&nbsp;Parent Task
+                </div> 
+
+          </div>
+
+
+<div class="form-group row">
+    <label for="lastname" class="col-sm-2 col-form-label">Priority:</label>
+      <div class="col-sm-10">
+        <div style="display: flex; color: #6f42c1">
+            <span><strong>0</strong></span>
+            <input type="range" class="form-control" id="priority" formControlName="priority" name="priority" min="0" max="100" value="0"
+              (change)="onPriorityChange($event)" step="1"  style="width: 500px;">&nbsp;<span><strong>{{priority}}</strong></span>
+            </div>
+
+
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="ptask" class="col-sm-2 col-form-label">Parent Task:</label>          
+          <div class="col-sm-7">
+            <input type="input"  formControlName="parenttaskname"
+            id ="parenttaskname"  class="form-control" id="ptaksinput" style="width: 450px !important" disabled>
+          </div>
+          <div class="col-sm-1">
+            <input type="button" id="parenttaskbut" [disabled]="disabtaskbutton" class="serachbuton" data-toggle="modal" data-target="#taskpopop">
+          </div>
+          <div class="col-sm-2"></div>
+          <input type="hidden" name="parenttaskid" id="parenttaskid" formControlName="parenttaskid">
+        </div>
+
+
+        <div class="form-group row">  
+            <label for="ptask" class="col-sm-2 col-form-label">Start Date:</label>                      
+                  <div class="col-sm-3">
+                      <input type="date" id="startdate" formControlName="startdate" class="form-control borderstyle" name="startDate" />
+                  </div>  
+                  <label for="ptask" class="col-sm-2 col-form-label">End Date:</label>           
+                  <div class="col-sm-3">
+                      <input type="date" id="enddate" formControlName="enddate" class="form-control borderstyle" name="startDate" />
+                      <div *ngIf="submitted && f.startdate.errors" style="margin-left: -337px" class="mandmaindiv">
+                          <div class="arrow_box">End date should be greater than start date</div>
+                        </div>
+                  </div>   
+                  <div class="col-sm-2"></div>
+                  
+        </div>
+
+
+
+        <div class="form-group row">
+            <label for="userid" class="col-sm-2 col-form-label">User:</label>          
+              <div class="col-sm-7">
+                <input type="input" class="form-control"  formControlName="managername" id="managername" style="width: 450px !important" disabled>
+              </div>
+              <div class="col-sm-1">
+                <input type="button" class="serachbuton" data-toggle="modal" data-target="#userpopup">
+              </div>
+              <div class="col-sm-2"></div>
+              <input type="hidden" name="managerid" id="managerid" formControlName="managerid">
+            </div>
+
+
+        <div class="form-group row">
+            <div class="col-sm-5"></div>
+  <div class="col-sm-2">
+  <button type="button" id="addedittask" class="form-control btn btn-success btn-sm successbutton" (click)="onsave()"><span id="blicktext"> {{addtasktitle}}</span></button>
+  <button type="button" style="visibility: hidden;" id="savaecofnm" data-toggle="modal" data-target="#saveconfirm">dummysave</button>
+</div>
+  <div class="col-sm-2">
+  <button type="button" class="form-control btn btn-primary btn-sm resetbutton" data-toggle="modal" data-target="#warnpopup">Reset</button>
+</div>
+<div class="col-sm-3"></div>
+
+        </div>
+</form>
+
+    </fieldset>
+  </div>
+<div></div>   
+
+</div>
+
+<div id="projpop">
+  <app-userlisting listingmodalId="projectpop" [projectsodel] = "projectsmodelpop" (selectedvalue)="selectedprojectpop($event)">
+    <div head>Select Project</div>
+  </app-userlisting>
+</div>
+
+<div id="taskpop">
+    <app-userlisting listingmodalId="taskpopop" [tasksmodel] = "tasksmodels" (selectedvalue)="selectedtaskpop($event)">
+      <div head>Select Parent Task</div>
+    </app-userlisting>
+</div>
+
+<div>
+    <app-userlisting listingmodalId="userpopup" [userlistings]="userslists" (selectedvalue) = "selecteduser($event)">
+      <div head>Select User</div>
+    </app-userlisting>
+  </div>
+
+<div id="warpop">
+  <app-warning modalId="warnpopup" (valuechangee)="warningresult($event)">
+      <div body>Are you sure want to <span style="color:red;text-shadow: 5px 0px 10px floralwhite;">reset</span>   the values ???</div>
+  </app-warning>
+</div>
+
+<div id="saveconfi">
+    <app-confirmation confirmid="saveconfirm">
+      <div head>Confirmation</div>
+      <div body>Task details has been saved successfully </div>
+    </app-confirmation>
+  </div>  
+
+  
+
+<div>
+    <app-footer></app-footer>
+  </div>

@@ -1,0 +1,18 @@
+.modalcontainer{
+    /* border:1px red solid; */
+    /* height: 50px;
+    text-align: center;
+    padding: 10px 10px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.25em;         */
+    background: linear-gradient(135deg, #6f42c1 0%, whitesmoke 100%);
+}
+
+.crossbuttons{
+    border-radius: 14px;
+    border: 2px whitesmoke solid;
+    padding: 2px 12px;
+    background-color: white;
+  }
+  

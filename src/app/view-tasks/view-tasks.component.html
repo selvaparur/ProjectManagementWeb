@@ -1,0 +1,68 @@
+<div class="compstyle">
+  <div class="compstylechild"><b>View Task</b></div>
+
+<form style="margin-top: 10px;" [formGroup]="viewtaskform">
+    <div class="form-group row">
+        <label for="ptask" class="col-sm-1 col-form-label" style="padding-left: 20px;">Project:</label>          
+          <div class="col-sm-4">
+            <input type="input" formControlName="projectname" [(ngModel)]="searchpro" id="projectname" name="projectname" class="form-control" id="ptaksinput" style="width: 250px !important" disabled>          
+          </div>
+          <div class="col-sm-1">
+            <input type="button" class="serachbuton" style="margin-left: -15px;" data-toggle="modal" data-target="#projectpop">            
+            
+          </div>                
+          <div class="col-sm-1" style="padding: 10px 7px;"><span> Sort By:</span></div>
+          <div class="col-sm-5 alignsort">
+              <button type="button" class="btn btn-success btn-sm taskbuttons successbutton" (click)="handleSortBy('startdate')">Start Date</button>
+              <div style="width: 2px;"></div>
+              <button type="button" class="btn btn-success btn-sm taskbuttons successbutton" (click)="handleSortBy('enddate')">End Date</button>
+              <div style="width: 2px;"></div>
+              <button type="button" class="btn btn-success btn-sm taskbuttons successbutton" (click)="handleSortBy('priority')">Priority</button>
+              <div style="width: 2px;"></div>
+              <button type="button" class="btn btn-success btn-sm taskbuttons successbutton" (click)="handleSortBy('completed')">Completed</button>
+          </div>
+
+        </div>
+
+        <table class="table" id="idvietask">
+          <thead>
+            <tr>
+            <th scope="col" style="text-align: center;border: none">Taks</th>
+            <th scope="col" style="text-align: center; border: none">Parent</th>
+            <th scope="col" style="text-align: center; border: none">Priority</th>
+            <th scope="col" style="text-align: center;border: none">Start</th>
+            <th scope="col" style="text-align: center; border: none">End</th>            
+          </tr>
+          </thead>
+          <tbody *ngFor="let tm of tasksmodel | FilterPipe: searchpro; let i = index">
+            <td style="text-align: center;background-color: #AD9AE9; color: white;border-radius: 10px;border: none">{{tm.TaskName}}</td>
+            <td style="text-align: center;background-color: #AD9AE9; border-radius: 10px;; color: white;border: none">{{tm.ParentTaskName}}</td>
+            <td style="text-align: center;border: none">{{tm.Priority}}</td>
+            <td style="text-align: center;border: none">{{tm.StartDate | date:'MM/dd/yyyy'}}</td>
+            <td style="text-align: center;border: none">{{tm.EndDate | date:'MM/dd/yyyy'}}</td>
+            <td style="text-align: center; border: none"><button type="submit" class="btn btn-success btn-sm successbutton" [disabled]="isCompleted(tm)" style="width: 80px;"  (click)="edittask(tm)" >Edit</button></td>
+            <td style="text-align: center; border: none"><button type="submit" class="btn btn-success btn-sm successbutton"  [disabled]="isCompleted(tm,i)"  (click)="endtask(tm)"  data-toggle="modal" data-target="#warnpopup">End Task</button></td>
+            
+          </tbody>         
+
+        </table>
+
+</form>
+
+</div>
+
+<div id="projpop">
+    <app-userlisting listingmodalId="projectpop" [projectsodel] = "projectsmodelpop" (selectedvalue)="selectedprojectpop($event)">
+      <div head>Select Project</div>
+    </app-userlisting>
+  </div>
+
+<div id="warnpop">
+    <app-warning modalId="warnpopup" (valuechangee)="warningresultendtask($event)">
+        <div body>Are you sure want to <span style="color:red;text-shadow: 5px 0px 10px floralwhite;">end the task</span> ???</div>
+    </app-warning>
+  </div>
+
+<div>
+    <app-footer></app-footer>
+  </div>

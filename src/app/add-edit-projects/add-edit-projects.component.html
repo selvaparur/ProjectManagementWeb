@@ -1,0 +1,196 @@
+<div class="compstyle">
+  <div class="compstylechild"><b>Add Project</b></div>
+  <div>
+    <fieldset class="field_set">
+      <legend class="legheading" style="font-variant-caps: all-petite-caps; text-align: center">Add Project Details</legend>
+      
+<form [formGroup]="projectform">
+  <div class="form-group row">
+<label for="proj" class="col-sm-2 col-form-label ">Project:</label>
+  <div class="col-sm-10">
+    <input type="input" class="form-control" formControlName="projectname" id="projectname"
+    name="projectname" placeholder="Preoject Name"  [ngClass]="{ 'is-invalid': submitted && f.projectname.errors }" >
+
+    <div *ngIf="submitted && f.projectname.errors" class="mandmaindiv">
+        <div *ngIf="f.projectname.errors.required" class="arrow_box">Project Name is required</div>
+      </div>
+
+  </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-2"></div>    
+    <div class="col-sm-2">
+            <div>
+              <input type="checkbox" id="setstartandenddate" name="setstartandenddate" 
+              formControlName="setstartandenddate" style="border-color: #6f42c1;"
+              (change)="changeDate($event)" 
+               checked="checked">&nbsp;Set Start and End Date
+            </div>                
+          </div>  
+          <div class="col-sm-3">
+              <input type="date" class="form-control borderstyle" name="startdate" formControlName="startdate" id="startdate" />
+          </div>   
+          <div class="col-sm-3">
+              <input type="date" class="form-control borderstyle" name="enddate" formControlName="enddate" />
+          </div>   
+          <div class="col-sm-2"></div>
+          <div class="mandmaindiv" id="datevalidate" style="visibility: hidden;">
+              <div class="arrow_box">End date should be greater than start date or date fields may be empty</div>
+            </div>    
+</div>
+
+<div class="form-group row">
+    <label for="lastname" class="col-sm-2 col-form-label">Priority:</label>
+      <div class="col-sm-10">
+        
+        <div style="display: flex; color: #6f42c1">
+          <span><strong>0</strong></span>
+          <input type="range" class="form-control" id="priority" formControlName="priority" name="priority" min="0" max="100" value="0"
+            (change)="onPriorityChange($event)" step="1"  style="width: 500px;">&nbsp;<span><strong>{{priority}}</strong></span>
+          </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="empid" class="col-sm-2 col-form-label">Manager:</label>          
+          <div class="col-sm-7">
+            <input type="input" formControlName="manager" name="manager" class="form-control" id="manager" style="width: 450px !important" disabled>
+          </div>
+          <div class="col-sm-1">
+            <input type="button" class="serachbuton" data-toggle="modal" data-target="#userlisting">            
+          </div>
+          <div class="col-sm-2"></div>
+          <input type="hidden" id="userId" name="userId" formControlName="userId">
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-5"></div>
+  <div class="col-sm-2">
+  <button type="button" id="addeditprobut" class="form-control btn btn-success btn-sm successbutton" (click)="onsubmit()"><span id="addeditpro">{{addtitle}}</span> </button>
+  <button type="button" style="display: none" id="dummybut" name="dummybut" data-toggle="modal" data-target="#saveconfr">dummy</button>
+
+</div>
+  <div class="col-sm-2">
+  <button type="button" class="form-control btn btn-primary btn-sm resetbutton"  data-toggle="modal" data-target="#modal1">Reset</button>  
+</div>
+<div class="col-sm-3"></div>
+
+        </div>
+</form>
+
+    </fieldset>
+  </div>
+<div></div>
+  <div>
+    <fieldset class="field_set">
+      <legend style="font-variant-caps: all-petite-caps; text-align: center">View Project Details</legend>
+      
+<form style="margin: 8px;">
+  <div class="form-group row">
+      <div class="col-sm-12">
+          <input type="text" name="searchproject" [(ngModel)]="searchproject" style="width: 630px !important" placeholder="Search..."> 
+      </div>
+  </div>
+
+<div class="form-group row">
+    
+  <div class="col-sm-2"><div style="text-align: center">Sort By:</div></div>
+<div class="col-sm-2"><button type="submit" class="form-control btn btn-success btn-sm successbutton"  (click)="handleSortBy('startdate')">Start Date</button></div>
+<div class="col-sm-2"><button type="submit" class="form-control btn btn-success btn-sm successbutton" (click)="handleSortBy('enddate')">End Date</button></div>  
+<div class="col-sm-2"><button type="submit" class="form-control btn btn-success btn-sm successbutton" (click)="handleSortBy('priority')">Priority</button></div>
+<div class="col-sm-2"><button type="submit" class="form-control btn btn-success btn-sm successbutton" (click)="handleSortBy('completed')">Completed</button></div>
+</div>  
+
+<div class="form-group row">
+  
+  <div *ngFor="let ps of projectsmodel | FilterPipe:searchproject" class="col-sm-12">
+      <div id="pedit">
+         <div class="projsec" style="width: 370px;padding-left: 5px;">
+           <p>Project:</p>
+           
+           <div>
+            <div class="projedit">
+              <div>No of Tasks:
+                <span class="countst"><b>{{ps.NumberOfTasks}}</b></span>
+              </div>
+              <div style="width: 51px;"></div>
+              <div></div>
+              <div style="width: 150px;">Completed:
+                  <span class="countst"><b>{{ps.Completed}}</b></span>
+              </div>
+            </div>
+<p></p>
+            <div class="projedit">
+                <div>Start Date:
+                  <span>{{ps.StartDate  | date:'dd-MM-yyyy'}}</span>
+                </div>
+                <div style="width: 12px;"></div>
+              <div></div>
+                <div>End Date
+                    <span>{{ps.EndDate  | date:'dd-MM-yyyy'}}</span>
+                </div>
+              </div>
+
+           </div>
+         </div>
+         <div style="width: 20px;"></div>
+         <div class="projsec" style="width: 84px; text-align: center">Priority   
+           <br/>     <br/>     
+        <p><span class="countst"><b>{{ps.Priority}}</b></span></p>            
+      </div>       
+      <div style="width: 28px;"></div>
+    <div>
+         <button type="submit" class="form-control btn btn-success btn-sm successbutton" style="margin-bottom: 30px" (click) = "editproject(ps)">Update</button>
+         
+        <button type="submit" class="form-control btn btn-success btn-sm successbutton" data-toggle="modal" data-target="#suspendconf">Suspend</button>
+        </div>
+        
+        </div>
+
+        <hr class="splithr"/>
+
+  </div>
+
+</div>
+
+
+
+</form>
+
+    </fieldset>
+  </div>
+
+</div>
+
+<div>
+  <app-warning modalId="modal1" (valuechangee)="resetconfirm($event)">
+    <div head>  </div>
+    <div body> Are you sure want to <span style="color:red;text-shadow: 5px 0px 10px floralwhite;">reset</span> values ???</div>
+    <div footer></div>
+  </app-warning>
+</div>
+
+<div>
+  <app-userlisting listingmodalId="userlisting" [userlistings]="userlists" (selectedvalue) = "selectedmanagers($event)">
+    <div head>Select Manager</div>
+  </app-userlisting>
+</div>
+
+<div id="saveconfi">
+  <app-confirmation confirmid="saveconfr">
+    <div head>Confirmation</div>
+    <div body>Project detail has been saved successfully </div>
+  </app-confirmation>
+</div>
+
+<div id="susp">
+    <app-confirmation confirmid="suspendconf">
+      <div head>Confirmation</div>
+      <div body>Project detail suspended successfully </div>
+    </app-confirmation>
+  </div>
+
+<div>
+    <app-footer></app-footer>
+  </div>

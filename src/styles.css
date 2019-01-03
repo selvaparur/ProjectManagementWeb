@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+label{
+    text-align:end;
+}
+
+input[type=number]{
+    width: 250px !important;
+    border-color: #6f42c1;
+}
+
+input[type=input]
+{
+    width: 500px !important;
+    border-color: #6f42c1;
+}
+
+input[type=date]
+{
+    border-color: #6f42c1;
+}
+
+
+input[type=text] {
+    width: 300px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 11px 20px 5px 40px;
+    
+  }
+
+  .serachbuton
+  {    
+    box-sizing: border-box;
+    border: 2px solid #6f42c1;
+    border-radius: 15px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://www.w3schools.com/css/searchicon.png');
+    background-position: 13px 8px; 
+    background-repeat: no-repeat;
+    padding: 11px 20px 0px 28px;
+  }
+
+  .successbutton{
+    background-color: #AD9AE9 !important;   
+    border-color:   #AD9AE9 !important;   
+  }
+
+  .resetbutton{
+    background-color: lavender !important;   
+    border-color:   lavender !important;       
+  }
+  
+  legend
+  {
+      color: #6f42c1;
+      font-weight: bold;      
+  }
+
+  .pagehead{
+font-family: fantasy;
+font-weight: bold;
+  }
+
+  .blink_me {
+    animation: blinker 1s linear infinite;
+    font-weight: bold;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }

@@ -1,0 +1,93 @@
+<div class="modal fade" style="font-family: initial;color: white" [attr.id]="listingmodalId" tabindex="-1" role="dialog" aria-labelledby="modalIdLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content   modalcontainer">
+            <div class="modal-header">
+                <div style="font-weight: bold;">                   
+                    <ng-content select="[head]"></ng-content>
+                  </div>
+                <button type="button" 
+                        class="close" 
+                        data-dismiss="modal" 
+                        aria-label="Close"><span class="crossbuttons" aria-hidden="true">&times;</span>
+                </button>                            
+            </div>            
+            <div class="modal-body"  style="text-align: center">
+                <ng-content select="[body]"></ng-content>
+                <div *ngIf="userlistings.length > 0">
+                <table class="table">
+                  <thead>
+                    <th scope="col" style="border: none"></th>
+                    <th scope="col" style="border: none; display: none"></th>
+                    <th scope="col" style="text-align: center;border: none;text-decoration: underline">First Name</th>
+                    <th scope="col" style="text-align: center;border: none;text-decoration: underline">Last Name</th>
+                    <th scope="col" style="text-align: center;border: none;text-decoration: underline">Employee ID</th>
+                  </thead>
+                  <tbody *ngFor="let us of userlistings">
+                    <td style="border: none">
+                        <input class="form-check-input" style="margin: 8px 6px;" type="radio" name="useridradios" id="useridradios" (click)="radclick(us)" data-dismiss="modal" [value]="us.UserId">
+                    </td>
+                      <td style="border: none;display: none">{{us.userid}}</td>
+                      <td style="border: none">{{us.FirstName}}</td>
+                      <td style="border: none">{{us.LastName}}</td>
+                      <td style="border: none">{{us.EmployeeId}}</td>
+                  </tbody>
+                </table>
+            </div>
+
+            <div *ngIf="projectsodel.length > 0">
+                    <table class="table">
+                      <thead>
+                        <th scope="col" style="border: none"></th>
+                        <th scope="col" style="border: none; display: none"></th>
+                        <th scope="col" style="text-align: center;border: none;text-decoration: underline">Project Name</th>
+                        <th scope="col" style="text-align: center;border: none;text-decoration: underline">Start Date</th>
+                        <th scope="col" style="text-align: center;border: none;text-decoration: underline">End Date</th>
+                        <th scope="col" style="text-align: center;border: none;text-decoration: underline">Manager</th>
+                        
+                      </thead>
+                      <tbody *ngFor="let ps of projectsodel">
+                        <td style="border: none">
+                            <input class="form-check-input" style="margin: 8px 6px;" type="radio" name="useridradios" id="psidradios" (click)="radprojectclick(ps)" data-dismiss="modal" [value]="ps.ProjectId">
+                        </td>
+                          <td style="border: none;display: none">{{ps.ProjectId}}</td>
+                          <td style="border: none">{{ps.ProjectName}}</td>
+                          <td style="border: none">{{ps.StartDate}}</td>
+                          <td style="border: none">{{ps.EndDate}}</td>
+                          <td style="border: none">{{ps.Manager}}</td>                          
+                      </tbody>
+                    </table>
+                </div>
+
+                <div *ngIf="tasksmodel.length > 0">
+                        <table class="table">
+                          <thead>
+                            <th scope="col" style="border: none"></th>
+                            <th scope="col" style="border: none; display: none"></th>
+                            <!-- <th scope="col" style="text-align: center;border: none;text-decoration: underline">Task Name</th> -->
+                            <!-- <th scope="col" style="text-align: center;border: none;text-decoration: underline">Project Name</th> -->
+                            <th scope="col" style="text-align: center;border: none;text-decoration: underline">Parent TaskName</th>
+                            <!-- <th scope="col" style="text-align: center;border: none;text-decoration: underline">Status</th> -->
+                            
+                          </thead>
+                          <tbody *ngFor="let ts of tasksmodel">
+                            <td style="border: none">
+                                <input class="form-check-input" style="margin: 8px 6px;" type="radio" name="tsidradios" id="tsidradios" (click)="radtaskclick(ts)" data-dismiss="modal" [value]="ts.TaskId">
+                            </td>
+                              <!-- <td style="border: none;display: none">{{ts.TaskId}}</td> -->
+                              <!-- <td style="border: none">{{ts.TaskName}}</td>
+                              <td style="border: none">{{ts.ProjectName}}</td> -->
+                              <td style="border: none">{{ts.ParentTaskName}}</td>
+                              <!-- <td style="border: none">{{ts.Status}}</td>                           -->
+                          </tbody>
+                        </table>
+                    </div>
+
+            </div>
+            <div class="modal-footer">            
+                <ng-content select="[footer]"></ng-content>
+            </div>
+        </div>
+    </div>
+  </div> 
+  
+  
